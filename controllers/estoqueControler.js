@@ -13,5 +13,9 @@ module.exports.saveProduto = async(req,res)=>{
             console.log('Produto cadastrado com sucesso')
             console.log(data)
             res.send(data)
-        })        
+        })
+        .catch((err)=>{
+            console.log(err)
+            res.sendStatus(500)
+        });        
 }
