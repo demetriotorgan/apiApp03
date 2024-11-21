@@ -4,6 +4,6 @@ const { getProdutos, saveProduto } = require('../controllers/estoqueControler');
 const router = Router();
 
 router.get('/', getProdutos);
-router.post('/estoque', saveProduto);
+router.post('/', saveProduto);
 
 module.exports = router;
