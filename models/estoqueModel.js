@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const EstoqueSchema = new mongoose.Schema({
     codigo:{
-        type:String
+        type:String,
+        unique:true
     },
     descricao:{
         type:String
