@@ -8,7 +8,7 @@ module.exports.getProdutos = async(req,res)=>{
 module.exports.saveProduto = async(req,res)=>{
     const {codigo, descricao, grade, pc, pv, dataentrada, status} = req.body
     estoqueModel
-        .create({codigo, descricao, grande, pc, pv, dataentrada, status})
+        .create({codigo, descricao, grade, pc, pv, dataentrada, status})
         .then((data)=>{
             console.log('Produto cadastrado com sucesso')
             console.log(data)
