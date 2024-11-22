@@ -19,3 +19,12 @@ module.exports.saveProduto = async(req,res)=>{
             res.sendStatus(500)
         });        
 }
+
+module.exports.deleteProduto = async(req,res)=>{
+    const {_id} = req.body
+        estoqueModel
+            .findByIdAndDelete(_id)
+            .then(()=>res.send('Produto deletado com sucesso'))
+            .catch((err)=>console.log(err));
+}
+
