@@ -28,3 +28,10 @@ module.exports.deleteProduto = async(req,res)=>{
             .catch((err)=>console.log(err));
 }
 
+module.exports.updateProduto = async(req,res)=>{
+    const {_id, codigo, descricao, grade, pc, pv, dataentrada, status } = req.body
+    estoqueModel
+        .findByIdAndUpdate(_id, {codigo, descricao, grade, pc, pv, dataentrada, status})
+        .then(()=>res.send("Produto atualizado com sucesso"))
+        .catch((err)=>console.log(err))
+}
