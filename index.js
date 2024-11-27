@@ -8,15 +8,14 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.port || 5000;
 app.use(express.json());
-
+app.use(cors({
+    origin:"*",    
+}));
 app.use((req,res, next)=>{
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
     next();    
   });
-app.use(cors({
-    origin:"*",    
-}));
 
 mongoose
     .connect(process.env.MONGODB_URL)
