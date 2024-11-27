@@ -15,7 +15,8 @@ app.use((req,res, next)=>{
     next();    
   });
 app.use(cors({
-    origin:"*"
+    origin:"*",
+    origin: 'http://localhost:5173',
 }));
 
 mongoose
