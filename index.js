@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.port || 5000;
 app.use(express.json());
 app.use(cors({
-    origin:'https://front-app03.vercel.app/venda',    
+    origin:'https://front-app03.vercel.app',    
 }));
 app.use((req,res, next)=>{
     res.header('Access-Control-Allow-Origin', 'https://front-app03.vercel.app/venda');
