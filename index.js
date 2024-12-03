@@ -24,9 +24,3 @@ mongoose
 
 app.use(routes);
 app.listen(PORT, ()=>console.log(`Rodando na porta ${PORT}`));
-
-
-// "methods":["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-//             "headers":{
-//                 "Access-Control-Allow-Origin": "*"
-//             }

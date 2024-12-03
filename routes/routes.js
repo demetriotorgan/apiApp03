@@ -11,7 +11,7 @@ router.post('/produtos/delete', deleteProduto);
 router.post('/produtos/update', updateProduto);
 
 //venda
-router.get('/venda', getVenda);
-router.post('/venda', saveVenda);
+router.get('/produtos/venda', getVenda);
+router.post('/produtos/venda/save', saveVenda);
 
 module.exports = router;
