@@ -38,3 +38,28 @@ module.exports.deletePagamento = async(req,res)=>{
         res.status(500).json({erro:'Erro ao remover pagamento'});
     }
 }
+
+module.exports.updatePagamento = async(req,res)=>{
+    try {
+        const {vendaId, pagamentoId} = req.params;
+        const {novoPagamento} = req.body; //Dados da Atualização
+
+        //Verifica se os dados são validos
+        if(!novoPagamento){
+            return res.status(400).json({erro:'Dados de atualização inválidos'})
+        }
+        //Encontra a venda por ID e atualiza o pagamento
+        const vendaAtualizada = await vendaModel.findOneAndUpdate(
+            {_id: vendaId, "pagamentos._id":pagamentoId}, //critério da busca
+            {$set: {"pagamentos.$":novoPagamento}},//Atualiza o pagamento encontrado
+            {new:true} //Retorna o documento atualizado
+        );
+        //Verifica se a venda foi atualizada
+        if(!vendaAtualizada){
+            return res.status(400).json({erro:'Venda ou pagamento não encontrados'});            
+        }
+        res.status(200).json({message:'Pagamento atualizado com sucesso',venda:vendaAtualizada})
+    } catch (error) {
+        res.status(500).json({erro:'Erro ao atualizar pagamento'});
+    }
+}

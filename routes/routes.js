@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const { getProdutos, saveProduto, deleteProduto, updateProduto } = require('../controllers/estoqueControler');
 const { saveVenda, getVenda, deleteVenda } = require('../controllers/vendaControler');
-const { addPagamento, deletePagamento } = require('../controllers/pagamentoControler');
+const { addPagamento, deletePagamento, updatePagamento } = require('../controllers/pagamentoControler');
 
 const router = Router();
 
@@ -19,5 +19,6 @@ router.delete('/produtos/venda/:vendaId', deleteVenda);
 //pagamentos
 router.put('/produtos/venda/:id/pagamentos', addPagamento);
 router.delete('/produtos/venda/:vendaId/pagamentos/:pagamentoId', deletePagamento);
+router.put('/produtos/venda/:vendaId/pagamentos/:pagamentoId', updatePagamento);
 
 module.exports = router;
