@@ -48,3 +48,41 @@ module.exports.updateProdutoVendido = async(req,res)=>{
         res.status(500).send("Erro ao atulizar produtos na venda")
     }    
 }
+
+module.exports.getPagamentosPorMes = async(req,res)=>{
+    try {
+        const {mes, ano} = req.query;
+
+        //Verifica se o mes e o ano foram fornecidos
+        if(!mes || !ano){
+            return res.status(400).json({erro:'Por favor forneça um mês ou ano válido'});
+        }
+
+        const mesInt = parseInt(mes);
+        const anoInt = parseInt(ano);
+
+        if(isNaN(mesInt) || isNaN(anoInt) || mesInt < 1 || mesInt > 12){
+            return res.status(400).json({erro:'Mês ou ano inválido'});
+        }
+
+        //Define o inicio e o fim do mes
+        const inicioMes = new Date(anoInt, mesInt -1, 0);
+        const fimMes = new Date(anoInt, mesInt, 0);
+
+        //Consulta para encontrar todas as vendas no intervalo definido
+        const vendas = await vendaModel.find({
+            'pagamentos.data' : {$gte: inicioMes, $lt: fimMes}
+        });
+
+        //Filtrando pagamentos
+        const resultado = vendas.map(venda=>({
+            nome: venda.cliente,
+            pagamentos: venda.pagamentos.filter(pagamento =>
+                pagamento.data >= inicioMes && pagamento.data < fimMes
+            )
+        })).filter(venda => venda.pagamentos.length > 0);
+        res.status(200).json(resultado);
+    } catch (error) {
+        res.status(500).json({erro:'Erro ao buscar pagamentos'});
+    }
+}
