@@ -77,6 +77,7 @@ module.exports.getPagamentosPorMes = async(req,res)=>{
         //Filtrando pagamentos
         const resultado = vendas.map(venda=>({
             nome: venda.cliente,
+            valor: venda.valor,
             pagamentos: venda.pagamentos.filter(pagamento =>
                 pagamento.data >= inicioMes && pagamento.data < fimMes
             )
