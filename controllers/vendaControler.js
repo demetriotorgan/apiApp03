@@ -87,3 +87,11 @@ module.exports.getPagamentosPorMes = async(req,res)=>{
         res.status(500).json({erro:'Erro ao buscar pagamentos'});
     }
 }
+
+module.exports.updateVenda = async(req,res)=>{
+    const {_id, cliente,data,valor, parcelas, formapagamento, produtos, pagamentos} = req.body;
+    vendaModel
+        .findByIdAndUpdate(_id, {cliente,data,valor, parcelas, formapagamento, produtos, pagamentos})
+        .then(()=>res.send('Venda Atualizada com sucesso'))
+        .catch((err)=>console.log(err))
+}
