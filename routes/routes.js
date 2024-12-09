@@ -30,6 +30,6 @@ router.put('/produtos/venda/:vendaId/pagamentos/:pagamentoId', updatePagamento);
 router.get('/produtos/venda/condicional', getCondiconais);
 router.post('/produtos/venda/condicional/save', saveCondicional);
 router.put('/produtos/venda/condicional/entrada', condicionalEntrada);
-router.delete('/produtos/venda/condicional/delete', deleteCondicional);
+router.post('/produtos/venda/condicional/delete', deleteCondicional);
 
 module.exports = router;
