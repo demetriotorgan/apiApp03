@@ -42,3 +42,11 @@ module.exports.deleteCondicional = async(req,res)=>{
         .then(()=> res.send('Condiconal excluido com sucesso'))
         .catch((err)=>console.log(err));
 }
+
+module.exports.updateCondicional = async(req,res)=>{
+    const {_id, cliente, data, produtos} = req.body
+        condicionalModel
+            .findByIdAndUpdate(_id, {cliente, data, produtos})
+            .then(()=>res.send('Condicional atualizado'))
+            .catch((err)=>console.log(err));
+}
