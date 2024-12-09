@@ -16,3 +16,21 @@ module.exports.saveCondicional = async(req,res)=>{
                 res.send(data);
             })
 }
+
+module.exports.condicionalEntrada = async(req,res)=>{
+ const {produtos} = req.body
+
+ if(!Array.isArray(produtos) || produtos.length === 0){
+    return res.status(400).send('Lista de produtos inválida ou vazia');
+ }
+
+ try {
+    const updates = produtos.map(produto =>
+        estoqueModel.findByIdAndUpdate(produto._id, {status:"CONDICIONAL"}));
+        await Promise.all(updates);
+        res.send("Produtos salvos como condicional")
+ } catch (error) {
+    console.log(error);
+    res.status(500).send("Erro ao atualizar condiconais")
+ }
+}
