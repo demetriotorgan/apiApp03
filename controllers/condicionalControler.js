@@ -34,3 +34,11 @@ module.exports.condicionalEntrada = async(req,res)=>{
     res.status(500).send("Erro ao atualizar condiconais")
  }
 }
+
+module.exports.deleteCondicional = async(req,res)=>{
+ const {_id} = req.body;
+    condicionalModel
+        .findByIdAndDelete(_id)
+        .then(()=> res.send('Condiconal excluido com sucesso'))
+        .catch((err)=>console.log(err));
+}
