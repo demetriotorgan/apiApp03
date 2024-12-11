@@ -19,6 +19,6 @@ const ListaPagamentosSchema = new mongoose.Schema({
     produtos:{
         type:Array
     }
-});
+},{timestamps:true});//Inclui createAt e updateAt automaticamente
 
 module.exports = mongoose.model('pagamentos', ListaPagamentosSchema);
