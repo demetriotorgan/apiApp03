@@ -1,4 +1,5 @@
-const vendaModel = require('../models/vendaModel')
+const vendaModel = require('../models/vendaModel');
+const pagamentosModel = require('../models/pagamentosModel');
 
 module.exports.addPagamento = async(req,res)=>{
     try {
@@ -62,4 +63,19 @@ module.exports.updatePagamento = async(req,res)=>{
     } catch (error) {
         res.status(500).json({erro:'Erro ao atualizar pagamento'});
     }
+}
+
+module.exports.listaPagamentos = async(req,res)=>{
+    const {cliente, data, valor, tipo, produtos} = req.body;
+        try {
+            pagamentosModel
+                .create({cliente, data, valor, tipo, produtos})
+                .then((data)=>{
+                    console.log('Pagamento listado com sucesso', data);
+                    res.send(data);
+                })
+        } catch (error) {
+            console.log(error);
+            res.sendStatus(500);
+        }
 }
