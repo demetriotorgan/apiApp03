@@ -27,7 +27,7 @@ router.delete('/produtos/venda/:vendaId/pagamentos/:pagamentoId', deletePagament
 router.put('/produtos/venda/:vendaId/pagamentos/:pagamentoId', updatePagamento);
 router.post('/produtos/venda/pagamentos', addPagamentoNaLista);
 router.get('/produtos/venda/pagamentos/lista', getListaPagamentos);
-router.delete('/produtos/venda/pagamentos/lista/delete', deletePagamentoDaLista);
+router.post('/produtos/venda/pagamentos/lista/delete', deletePagamentoDaLista);
 router.post('/produtos/venda/pagamentos/lista/update', updatePagamentoNaLista);
 
 //condicional
