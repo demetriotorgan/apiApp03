@@ -100,3 +100,11 @@ module.exports.deletePagamentoDaLista = async(req,res)=>{
         console.log(error);
     }
 }
+
+module.exports.updatePagamentoNaLista = async(req,res)=>{
+    const {_id, cliente, data, valor, tipo, produtos} = req.body;
+        pagamentosModel
+            .findByIdAndUpdate(_id, {cliente, data, valor, tipo, produtos})
+            .then(()=>res.send('Pagamento ataulizado na lista com sucesso'))
+            .catch((err)=>console.log(err));
+}
