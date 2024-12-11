@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const { getProdutos, saveProduto, deleteProduto, updateProduto } = require('../controllers/estoqueControler');
 const { saveVenda, getVenda, deleteVenda, updateProdutoVendido, getPagamentosPorMes, updateVenda, devolucaoProdutos } = require('../controllers/vendaControler');
-const { addPagamento, deletePagamento, updatePagamento, getListaPagamentos, addPagamentoNaLista } = require('../controllers/pagamentoControler');
+const { addPagamento, deletePagamento, updatePagamento, getListaPagamentos, addPagamentoNaLista, deletePagamentoDaLista } = require('../controllers/pagamentoControler');
 const { getCondiconais, saveCondicional, condicionalEntrada, deleteCondicional, updateCondicional } = require('../controllers/condicionalControler');
 
 const router = Router();
@@ -27,6 +27,7 @@ router.delete('/produtos/venda/:vendaId/pagamentos/:pagamentoId', deletePagament
 router.put('/produtos/venda/:vendaId/pagamentos/:pagamentoId', updatePagamento);
 router.post('/produtos/venda/pagamentos', addPagamentoNaLista);
 router.get('/produtos/venda/pagamentos/lista', getListaPagamentos);
+router.delete('/produtos/venda/pagamentos/lista/delete', deletePagamentoDaLista);
 
 //condicional
 router.get('/produtos/venda/condicional', getCondiconais);

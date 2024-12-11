@@ -89,3 +89,14 @@ module.exports.getListaPagamentos = async(req,res)=>{
         res.sendStatus(500);
     }    
 }
+
+module.exports.deletePagamentoDaLista = async(req,res)=>{
+    try {
+        const {_id} = req.body;
+            pagamentosModel
+                .findByIdAndDelete(_id)
+                .then(()=>res.send('Pagamento excluido da lista'))
+    } catch (error) {
+        console.log(error);
+    }
+}
