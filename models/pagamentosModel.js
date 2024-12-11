@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 
 const ListaPagamentosSchema = new mongoose.Schema({
+    vendaid:{
+        type:String
+    },
     cliente:{
         type:String
     },

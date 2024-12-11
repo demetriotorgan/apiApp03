@@ -65,11 +65,13 @@ module.exports.updatePagamento = async(req,res)=>{
     }
 }
 
+//---------------Lista de Pagamentos ------------------//
+
 module.exports.addPagamentoNaLista = async(req,res)=>{
-    const {cliente, data, valor, tipo, produtos} = req.body;
+    const {vendaid,cliente, data, valor, tipo, produtos} = req.body;
         try {
             pagamentosModel
-                .create({cliente, data, valor, tipo, produtos})
+                .create({vendaid,cliente, data, valor, tipo, produtos})
                 .then((data)=>{
                     console.log('Pagamento listado com sucesso', data);
                     res.send(data);
@@ -102,9 +104,9 @@ module.exports.deletePagamentoDaLista = async(req,res)=>{
 }
 
 module.exports.updatePagamentoNaLista = async(req,res)=>{
-    const {_id, cliente, data, valor, tipo, produtos} = req.body;
+    const {vendaid, cliente, data, valor, tipo, produtos} = req.body;
         pagamentosModel
-            .findByIdAndUpdate(_id, {cliente, data, valor, tipo, produtos})
+            .findByIdAndUpdate(vendaid, {cliente, data, valor, tipo, produtos})
             .then(()=>res.send('Pagamento ataulizado na lista com sucesso'))
             .catch((err)=>console.log(err));
 }
