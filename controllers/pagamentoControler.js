@@ -65,7 +65,7 @@ module.exports.updatePagamento = async(req,res)=>{
     }
 }
 
-module.exports.listaPagamentos = async(req,res)=>{
+module.exports.addPagamentoNaLista = async(req,res)=>{
     const {cliente, data, valor, tipo, produtos} = req.body;
         try {
             pagamentosModel
@@ -78,4 +78,14 @@ module.exports.listaPagamentos = async(req,res)=>{
             console.log(error);
             res.sendStatus(500);
         }
+}
+
+module.exports.getListaPagamentos = async(req,res)=>{
+    try {
+        const listaPagamentos = await pagamentosModel.find()
+        res.send(listaPagamentos)    
+    } catch (error) {
+        console.log(error)
+        res.sendStatus(500);
+    }    
 }
