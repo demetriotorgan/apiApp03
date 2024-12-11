@@ -105,8 +105,18 @@ module.exports.deletePagamentoDaLista = async(req,res)=>{
 
 module.exports.updatePagamentoNaLista = async(req,res)=>{
     const {vendaid, cliente, data, valor, tipo, produtos} = req.body;
-        pagamentosModel
-            .findByIdAndUpdate(vendaid, {cliente, data, valor, tipo, produtos})
-            .then(()=>res.send('Pagamento ataulizado na lista com sucesso'))
-            .catch((err)=>console.log(err));
+        try {
+            const updatePagamento = await pagamentosModel.findOneAndUpdate(
+                {vendaid}, //Filtro: Busca pelo id da venda relacionada
+                {cliente, data, valor, tipo, produtos}, //Dados da atualização
+                {new: true} //Retorna o documento atualizado
+            );
+            if(!updatePagamento){
+                return res.status(400).send('Pagamento não encontrado')
+            }
+            res.send('Pagamento atualizado na lista')
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Erro ao atualizar pagamento na lista')
+        }
 }
