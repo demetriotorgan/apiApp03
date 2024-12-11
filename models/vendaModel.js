@@ -34,6 +34,6 @@ const VendaSchema = new mongoose.Schema({
     pagamentos:{
         type:[PagamentoSchema]
     },
-});
+},{timestamps:true}); //Vendas mais recentes
 
 module.exports =  mongoose.model('venda', VendaSchema);

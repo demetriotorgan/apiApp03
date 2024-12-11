@@ -112,3 +112,17 @@ module.exports.devolucaoProdutos = async(req,res)=>{
         res.status(500).send("Erro ao atulizar produtos na venda")
     }    
 }
+
+module.exports.ultimasVendas = async(req,res)=>{
+    try {
+        //Busca as ultimas vendas
+        const ultimasVendas = await vendaModel
+        .find()
+        .sort({createdAt: -1})
+        .limit(4)
+    res.json(ultimasVendas);
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Erro ao carregar ultimas vendas');
+    }
+}

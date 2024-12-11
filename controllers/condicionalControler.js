@@ -50,3 +50,17 @@ module.exports.updateCondicional = async(req,res)=>{
             .then(()=>res.send('Condicional atualizado'))
             .catch((err)=>console.log(err));
 }
+
+module.exports.ultimosCondicionais = async(req, res)=>{
+    try {
+        //Busca os ultimos quatro condicionais add
+        const ultimosCondicionais = await condicionalModel
+            .find()
+            .sort({createdAt: -1})
+            .limit(4)
+        res.json(ultimosCondicionais);
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Erro ao carregar condicionais recentes')
+    }
+}

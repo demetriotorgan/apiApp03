@@ -10,6 +10,6 @@ const condicionalSchema = new mongoose.Schema({
     produtos:{
         type:Array
     }
-})
+},{timestamps:true}); //Condicionais mais recentes
 
 module.exports = mongoose.model('condicional', condicionalSchema);
