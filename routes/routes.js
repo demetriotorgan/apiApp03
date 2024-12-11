@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const { getProdutos, saveProduto, deleteProduto, updateProduto } = require('../controllers/estoqueControler');
 const { saveVenda, getVenda, deleteVenda, updateProdutoVendido, getPagamentosPorMes, updateVenda, devolucaoProdutos } = require('../controllers/vendaControler');
-const { addPagamento, deletePagamento, updatePagamento, listaPagamentos, getListaPagamentos } = require('../controllers/pagamentoControler');
+const { addPagamento, deletePagamento, updatePagamento, getListaPagamentos, addPagamentoNaLista } = require('../controllers/pagamentoControler');
 const { getCondiconais, saveCondicional, condicionalEntrada, deleteCondicional, updateCondicional } = require('../controllers/condicionalControler');
 
 const router = Router();
