@@ -120,3 +120,17 @@ module.exports.updatePagamentoNaLista = async(req,res)=>{
             res.status(500).send('Erro ao atualizar pagamento na lista')
         }
 }
+
+module.exports.ultimosPagamentos = async(req,res)=>{
+    try {
+        //Busca os 4 ultimos registros em ordem cronologica
+        const ultimosPagamentos = await pagamentosModel
+            .find()
+            .sort({createdAt: -1}) // criação mais recente
+            .limit(4)
+        res.json(ultimosPagamentos);
+    } catch (error) {
+        console.error(error)
+        res.status(500).send('Erro ao buscar pagamentos')
+    }
+}
