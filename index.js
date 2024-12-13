@@ -21,6 +21,18 @@ mongoose
     .connect(process.env.MONGODB_URL)
     .then(()=>console.log('Conectado ao mongoDB'))
     .catch((err)=>console.log(err));
+    
+const db = mongoose.connection;
+    db.on('error', ()=>console.error('Erro na conexão com o banco de dados'));
+    db.once('open', ()=> console.log('Conectado ao Banco de Dados'));
+    
+app.get('/produtos/venda/conexao',(req,res)=>{
+        if(db.readyState === 1){
+            res.json({connected: true})
+        }else{
+            res.json({connected: false})
+        }
+    });
 
 app.use(routes);
 app.listen(PORT, ()=>console.log(`Rodando na porta ${PORT}`));

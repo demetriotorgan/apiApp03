@@ -4,6 +4,7 @@ const { saveVenda, getVenda, deleteVenda, updateProdutoVendido, getPagamentosPor
 const { addPagamento, deletePagamento, updatePagamento, getListaPagamentos, addPagamentoNaLista, deletePagamentoDaLista, updatePagamentoNaLista, ultimosPagamentos } = require('../controllers/pagamentoControler');
 const { getCondiconais, saveCondicional, condicionalEntrada, deleteCondicional, updateCondicional, ultimosCondicionais } = require('../controllers/condicionalControler');
 
+
 const router = Router();
 
 //estoque
